@@ -4,6 +4,8 @@ namespace Video;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use Torr\EmbedHelpers\Video\Parser\VimeoUrlParser;
+use Torr\EmbedHelpers\Video\Parser\YouTubeUrlParser;
 use Torr\EmbedHelpers\Video\VideoPlatform;
 use Torr\EmbedHelpers\Video\VideoUrlParser;
 
@@ -63,7 +65,10 @@ final class VideoUrlParsingTest extends TestCase
 		?string $expectedVideoType = null,
 	) : void
 	{
-		$parser = VideoUrlParser::createDefaultParser();
+		$parser = new VideoUrlParser([
+			new YouTubeUrlParser(),
+			new VimeoUrlParser(),
+		]);
 		$result = $parser->parseVideoUrl($url);
 
 		if (null === $expectedPlatform)

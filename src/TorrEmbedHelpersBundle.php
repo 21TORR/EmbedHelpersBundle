@@ -15,4 +15,12 @@ final class TorrEmbedHelpersBundle extends Bundle
 	{
 		return new BundleExtension($this);
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getPath () : string
+	{
+		return \dirname(__DIR__);
+	}
 }
