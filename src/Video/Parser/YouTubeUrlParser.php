@@ -23,7 +23,9 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 		{
 			if ("/watch" === $path)
 			{
-				return $this->createVideoDetails($query["v"] ?? "");
+				return isset($query["v"]) && \is_string($query["v"])
+					? $this->createVideoDetails($query["v"])
+					: null;
 			}
 
 			if (\preg_match('~^/(?<type>v|embed|shorts)/(?<id>.*?)$~', $path, $match))
@@ -38,7 +40,7 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 
 			if ("/oembed" === $path)
 			{
-				return isset($query["url"])
+				return isset($query["url"]) && \is_string($query["url"])
 					? $this->parseUrl($query["url"])
 					: null;
 			}
@@ -49,7 +51,7 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 			if (\preg_match(
 				'~^/(?<id>.*?)$~',
 				$path,
-				$match
+				$match,
 			))
 			{
 				return $this->createVideoDetails($match["id"]);
@@ -66,7 +68,7 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 	{
 		if (\preg_match(
 			\sprintf('~^%s$~', self::ID_PATTERN),
-			$id
+			$id,
 		))
 		{
 			return new VideoDetails(
