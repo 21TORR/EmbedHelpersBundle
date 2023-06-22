@@ -74,7 +74,6 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 			return new VideoDetails(
 				VideoPlatform::YouTube,
 				$id,
-				\sprintf("https://www.youtube.com/embed/%s", $id),
 				$videoType,
 			);
 		}

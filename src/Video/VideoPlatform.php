@@ -4,7 +4,19 @@ namespace Torr\EmbedHelpers\Video;
 
 enum VideoPlatform : string
 {
+	case Vimeo = "vimeo";
+
 	case YouTube = "youtube";
 
-	case Vimeo = "vimeo";
+	/**
+	 *
+	 */
+	public function getEmbedUrl (string $id) : string
+	{
+		return match ($this)
+		{
+			self::Vimeo => \sprintf("https://vimeo.com/%s", $id),
+			self::YouTube => \sprintf("https://www.youtube.com/embed/%s", $id),
+		};
+	}
 }
