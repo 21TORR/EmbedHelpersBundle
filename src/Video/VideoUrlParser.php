@@ -2,17 +2,22 @@
 
 namespace Torr\EmbedHelpers\Video;
 
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Torr\EmbedHelpers\Video\Data\VideoDetails;
 use Torr\EmbedHelpers\Video\Parser\VideoUrlParserInterface;
-use Torr\EmbedHelpers\Video\Parser\VimeoUrlParser;
-use Torr\EmbedHelpers\Video\Parser\YouTubeUrlParser;
 
+/**
+ * The parser manager that manages all dedicated platform-specific partners
+ */
 final class VideoUrlParser
 {
+	public const SERVICE_LOCATOR_TAG = "21torr.embed-helpers.video-url-parser";
+
 	/**
 	 */
 	public function __construct (
 		/** @var iterable<VideoUrlParserInterface> */
+		#[TaggedIterator(self::SERVICE_LOCATOR_TAG)]
 		private readonly iterable $parsers,
 	) {}
 
@@ -32,17 +37,5 @@ final class VideoUrlParser
 		}
 
 		return null;
-	}
-
-	/**
-	 *
-	 */
-	public static function createDefaultParser () : self
-	{
-		// the parsers are sorted in order of most likely usage
-		return new self([
-			new YouTubeUrlParser(),
-			new VimeoUrlParser(),
-		]);
 	}
 }
