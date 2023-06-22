@@ -13,4 +13,11 @@ final class VideoDetails
 		public readonly string $id,
 		public readonly ?string $videoType = null,
 	) {}
+
+	/**
+	 */
+	public function getEmbedUrl () : string
+	{
+		return $this->platform->getEmbedUrl($this->id);
+	}
 }
