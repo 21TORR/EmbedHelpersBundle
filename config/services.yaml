@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+
+    Torr\EmbedHelpers\:
+        resource: ../src/*
+        exclude:
+            - ../src/Exception
+            - ../src/TorrEmbedHelpersBundle.php
