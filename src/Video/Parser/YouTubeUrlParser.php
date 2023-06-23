@@ -33,7 +33,7 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 				return $this->createVideoDetails(
 					$match["id"],
 					"shorts" === $match["type"]
-						? "shorts"
+						? "short"
 						: "video",
 				);
 			}
