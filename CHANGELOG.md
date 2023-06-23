@@ -1,3 +1,9 @@
+1.0.2
+=====
+
+* (improvement) `VideoDetails::$videoType` is now required and will default to `"video"`.
+
+
 1.0.1
 =====
 

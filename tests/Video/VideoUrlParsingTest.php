@@ -17,14 +17,14 @@ final class VideoUrlParsingTest extends TestCase
 	public static function provideTestCases () : iterable
 	{
 		// YouTube: valid
-		yield "youtube http" => ["http://www.youtube.com/watch?v=1234567890_", VideoPlatform::YouTube, "1234567890_", "video"];
-		yield "youtube https" => ["https://www.youtube.com/watch?v=1234567890_", VideoPlatform::YouTube, "1234567890_", "video"];
-		yield "youtube/v" => ["https://www.youtube.com/v/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_", "video"];
-		yield "youtube/shorts" => ["https://www.youtube.com/shorts/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_", "shorts"];
-		yield "youtube/embed" => ["https://www.youtube.com/embed/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_", "video"];
-		yield "youtu.be https" => ["https://youtu.be/1234567890_", VideoPlatform::YouTube, "1234567890_", "video"];
-		yield "youtu.be http" => ["http://youtu.be/1234567890_", VideoPlatform::YouTube, "1234567890_", "video"];
-		yield "youtube/oembed" => ["https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D1234567890_&format=json", VideoPlatform::YouTube, "1234567890_", "video"];
+		yield "youtube http" => ["http://www.youtube.com/watch?v=1234567890_", VideoPlatform::YouTube, "1234567890_"];
+		yield "youtube https" => ["https://www.youtube.com/watch?v=1234567890_", VideoPlatform::YouTube, "1234567890_"];
+		yield "youtube/v" => ["https://www.youtube.com/v/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_"];
+		yield "youtube/shorts" => ["https://www.youtube.com/shorts/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_", "short"];
+		yield "youtube/embed" => ["https://www.youtube.com/embed/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_"];
+		yield "youtu.be https" => ["https://youtu.be/1234567890_", VideoPlatform::YouTube, "1234567890_"];
+		yield "youtu.be http" => ["http://youtu.be/1234567890_", VideoPlatform::YouTube, "1234567890_"];
+		yield "youtube/oembed" => ["https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D1234567890_&format=json", VideoPlatform::YouTube, "1234567890_"];
 
 		// YouTube: invalid
 		yield "youtube/watch invalid id" => ["http://www.youtube.com/watch?v=123456789012", null];
@@ -41,12 +41,12 @@ final class VideoUrlParsingTest extends TestCase
 		yield "youtube/embed sub before" => ["https://youtube.com/embed/sub/1234567890_", null];
 
 		// Vimeo: valid
-		yield "vimeo https" => ["http://vimeo.com/123456789", VideoPlatform::Vimeo, "123456789", "video"];
-		yield "vimeo http" => ["https://vimeo.com/123456789", VideoPlatform::Vimeo, "123456789", "video"];
-		yield "vimeo with query" => ["https://vimeo.com/123456789?q=uery", VideoPlatform::Vimeo, "123456789", "video"];
-		yield "vimeo with fragment" => ["https://vimeo.com/123456789#fragment", VideoPlatform::Vimeo, "123456789", "video"];
-		yield "vimeo with query + fragment" => ["https://vimeo.com/123456789?q=uery#fragment", VideoPlatform::Vimeo, "123456789", "video"];
-		yield "vimeo staff picks" => ["https://vimeo.com/channels/staffpicks/123456789", VideoPlatform::Vimeo, "123456789", "video"];
+		yield "vimeo https" => ["http://vimeo.com/123456789", VideoPlatform::Vimeo, "123456789"];
+		yield "vimeo http" => ["https://vimeo.com/123456789", VideoPlatform::Vimeo, "123456789"];
+		yield "vimeo with query" => ["https://vimeo.com/123456789?q=uery", VideoPlatform::Vimeo, "123456789"];
+		yield "vimeo with fragment" => ["https://vimeo.com/123456789#fragment", VideoPlatform::Vimeo, "123456789"];
+		yield "vimeo with query + fragment" => ["https://vimeo.com/123456789?q=uery#fragment", VideoPlatform::Vimeo, "123456789"];
+		yield "vimeo staff picks" => ["https://vimeo.com/channels/staffpicks/123456789", VideoPlatform::Vimeo, "123456789"];
 
 		// Vimeo: invalid
 		yield "vimeo with before path" => ["https://vimeo.com/before/123456789", null];
@@ -62,7 +62,7 @@ final class VideoUrlParsingTest extends TestCase
 		string $url,
 		?VideoPlatform $expectedPlatform,
 		?string $expectedId = null,
-		?string $expectedVideoType = null,
+		string $expectedVideoType = "video",
 	) : void
 	{
 		$parser = new VideoUrlParser([
