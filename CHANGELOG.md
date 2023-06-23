@@ -2,6 +2,7 @@
 =====
 
 * (improvement) `VideoDetails::$videoType` is now required and will default to `"video"`.
+* (improvement) Renamed the YouTube video type "shorts" to "short".
 
 
 1.0.1
