@@ -2,6 +2,7 @@
 =====
 
 * (improvement) Trim URLs before parsing.
+* (improvement) Require Symfony 7 and PHP 8.3+.
 
 
 1.0.2
