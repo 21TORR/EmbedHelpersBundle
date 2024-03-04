@@ -25,6 +25,7 @@ final class VideoUrlParsingTest extends TestCase
 		yield "youtu.be https" => ["https://youtu.be/1234567890_", VideoPlatform::YouTube, "1234567890_"];
 		yield "youtu.be http" => ["http://youtu.be/1234567890_", VideoPlatform::YouTube, "1234567890_"];
 		yield "youtube/oembed" => ["https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D1234567890_&format=json", VideoPlatform::YouTube, "1234567890_"];
+		yield "youtube http with space" => ["https://www.youtube.com/watch?v=1234567890_ ", VideoPlatform::YouTube, "1234567890_"];
 
 		// YouTube: invalid
 		yield "youtube/watch invalid id" => ["http://www.youtube.com/watch?v=123456789012", null];
