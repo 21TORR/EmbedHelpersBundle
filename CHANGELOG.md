@@ -1,3 +1,10 @@
+2.0.0
+=====
+
+* (bc) Remove `videoType` from video data.
+* (feature) Add new `youtube-short` provider.
+
+
 1.0.3
 =====
 

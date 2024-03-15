@@ -8,6 +8,8 @@ enum VideoPlatform : string
 
 	case YouTube = "youtube";
 
+	case YouTubeShort = "youtube-short";
+
 	/**
 	 *
 	 */
@@ -16,7 +18,8 @@ enum VideoPlatform : string
 		return match ($this)
 		{
 			self::Vimeo => \sprintf("https://vimeo.com/%s", $id),
-			self::YouTube => \sprintf("https://www.youtube.com/embed/%s", $id),
+			self::YouTube,
+			self::YouTubeShort => \sprintf("https://www.youtube.com/embed/%s", $id),
 		};
 	}
 }
