@@ -18,7 +18,6 @@ final class VimeoUrlParser implements VideoUrlParserInterface
 			? new VideoDetails(
 				VideoPlatform::Vimeo,
 				$id,
-				"video",
 			)
 			: null;
 	}

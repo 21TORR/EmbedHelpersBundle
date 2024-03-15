@@ -11,7 +11,6 @@ final class VideoDetails
 	public function __construct (
 		public readonly VideoPlatform $platform,
 		public readonly string $id,
-		public readonly string $videoType = "video",
 	) {}
 
 	/**

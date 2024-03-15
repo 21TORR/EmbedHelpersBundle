@@ -19,7 +19,7 @@ final class VideoUrlParsingTest extends TestCase
 		yield "youtube http" => ["http://www.youtube.com/watch?v=1234567890_", VideoPlatform::YouTube, "1234567890_"];
 		yield "youtube https" => ["https://www.youtube.com/watch?v=1234567890_", VideoPlatform::YouTube, "1234567890_"];
 		yield "youtube/v" => ["https://www.youtube.com/v/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_"];
-		yield "youtube/shorts" => ["https://www.youtube.com/shorts/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_", "short"];
+		yield "youtube/shorts" => ["https://www.youtube.com/shorts/1234567890_?a=3&b=1", VideoPlatform::YouTubeShort, "1234567890_"];
 		yield "youtube/embed" => ["https://www.youtube.com/embed/1234567890_?a=3&b=1", VideoPlatform::YouTube, "1234567890_"];
 		yield "youtu.be https" => ["https://youtu.be/1234567890_", VideoPlatform::YouTube, "1234567890_"];
 		yield "youtu.be http" => ["http://youtu.be/1234567890_", VideoPlatform::YouTube, "1234567890_"];
@@ -61,7 +61,6 @@ final class VideoUrlParsingTest extends TestCase
 		string $url,
 		?VideoPlatform $expectedPlatform,
 		?string $expectedId = null,
-		string $expectedVideoType = "video",
 	) : void
 	{
 		$parser = new VideoUrlParser([
@@ -79,8 +78,6 @@ final class VideoUrlParsingTest extends TestCase
 			self::assertNotNull($result);
 			self::assertSame($expectedPlatform, $result->platform);
 			self::assertSame($expectedId, $result->id);
-			self::assertSame($expectedVideoType, $result->videoType);
 		}
-
 	}
 }
