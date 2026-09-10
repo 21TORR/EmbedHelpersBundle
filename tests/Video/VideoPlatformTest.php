@@ -5,6 +5,9 @@ namespace Video;
 use PHPUnit\Framework\TestCase;
 use Torr\EmbedHelpers\Video\VideoPlatform;
 
+/**
+ * @internal
+ */
 final class VideoPlatformTest extends TestCase
 {
 	/**

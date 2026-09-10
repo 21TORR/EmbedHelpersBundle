@@ -26,7 +26,7 @@ final class VideoUrlParser
 	 */
 	public function parseVideoUrl (string $url) : ?VideoDetails
 	{
-		$url = \trim($url);
+		$url = trim($url);
 
 		foreach ($this->parsers as $parser)
 		{
