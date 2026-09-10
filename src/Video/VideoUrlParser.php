@@ -2,7 +2,7 @@
 
 namespace Torr\EmbedHelpers\Video;
 
-use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 use Torr\EmbedHelpers\Video\Data\VideoDetails;
 use Torr\EmbedHelpers\Video\Parser\VideoUrlParserInterface;
 
@@ -17,7 +17,7 @@ final class VideoUrlParser
 	 */
 	public function __construct (
 		/** @var iterable<VideoUrlParserInterface> */
-		#[TaggedIterator(self::SERVICE_LOCATOR_TAG)]
+		#[AutowireIterator(self::SERVICE_LOCATOR_TAG)]
 		private readonly iterable $parsers,
 	) {}
 

@@ -1,3 +1,11 @@
+2.1.0
+=====
+
+* (improvement) Allow Symfony 8.
+* (improvement) Remove unused requires on `symfony/console`, `symfony/string` and `symfony/validator`, add missing require on `symfony/dependency-injection`.
+* (improvement) Replace deprecated `#[TaggedIterator]` with `#[AutowireIterator]`.
+
+
 2.0.0
 =====
 
