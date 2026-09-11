@@ -5,9 +5,7 @@ namespace Torr\EmbedHelpers\Video;
 enum VideoPlatform : string
 {
 	case Vimeo = "vimeo";
-
 	case YouTube = "youtube";
-
 	case YouTubeShort = "youtube-short";
 
 	/**

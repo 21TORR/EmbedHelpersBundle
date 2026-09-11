@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Video;
+namespace Tests\Torr\EmbedHelpers\Video;
 
 use PHPUnit\Framework\TestCase;
 use Torr\EmbedHelpers\Video\Parser\VimeoUrlParser;
@@ -8,12 +8,15 @@ use Torr\EmbedHelpers\Video\Parser\YouTubeUrlParser;
 use Torr\EmbedHelpers\Video\VideoPlatform;
 use Torr\EmbedHelpers\Video\VideoUrlParser;
 
+/**
+ * @internal
+ */
 final class VideoUrlParsingTest extends TestCase
 {
 	/**
 	 *
 	 */
-	public static function provideTestCases () : iterable
+	public static function provideParsing () : iterable
 	{
 		// YouTube: valid
 		yield "youtube http" => ["http://www.youtube.com/watch?v=1234567890_", VideoPlatform::YouTube, "1234567890_"];
@@ -55,7 +58,7 @@ final class VideoUrlParsingTest extends TestCase
 	}
 
 	/**
-	 * @dataProvider provideTestCases
+	 * @dataProvider provideParsing
 	 */
 	public function testParsing (
 		string $url,

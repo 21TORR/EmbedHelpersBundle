@@ -27,11 +27,11 @@ final class VimeoUrlParser implements VideoUrlParserInterface
 	 */
 	private function parseVideoId (string $url) : ?string
 	{
-		$urlParts = \parse_url($url);
+		$urlParts = parse_url($url);
 		$host = $urlParts["host"] ?? null;
 		$path = $urlParts["path"] ?? "";
 
-		return ("vimeo.com" === $host && \preg_match("~^/(?:channels/[^/]+/)?(?<id>\\d+)$~", $path, $matches))
+		return ("vimeo.com" === $host && preg_match("~^/(?:channels/[^/]+/)?(?<id>\\d+)$~", $path, $matches))
 			? $matches["id"]
 			: null;
 	}

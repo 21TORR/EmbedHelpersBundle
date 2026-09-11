@@ -14,10 +14,10 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 	 */
 	public function parseUrl (string $url) : ?VideoDetails
 	{
-		$urlParts = \parse_url($url);
+		$urlParts = parse_url($url);
 		$host = $urlParts["host"] ?? null;
 		$path = $urlParts["path"] ?? "";
-		\parse_str($urlParts["query"] ?? "", $query);
+		parse_str($urlParts["query"] ?? "", $query);
 
 		if ("youtube.com" === $host || "www.youtube.com" === $host)
 		{
@@ -28,7 +28,7 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 					: null;
 			}
 
-			if (\preg_match('~^/(?<type>v|embed|shorts)/(?<id>.*?)$~', $path, $match))
+			if (preg_match('~^/(?<type>v|embed|shorts)/(?<id>.*?)$~', $path, $match))
 			{
 				return $this->createVideoDetails(
 					$match["id"],
@@ -46,7 +46,7 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 
 		if ("youtu.be" === $host)
 		{
-			if (\preg_match(
+			if (preg_match(
 				'~^/(?<id>.*?)$~',
 				$path,
 				$match,
@@ -67,7 +67,7 @@ final class YouTubeUrlParser implements VideoUrlParserInterface
 		bool $isFullVideo = true,
 	) : ?VideoDetails
 	{
-		if (\preg_match(
+		if (preg_match(
 			\sprintf('~^%s$~', self::ID_PATTERN),
 			$id,
 		))

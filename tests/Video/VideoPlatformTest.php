@@ -1,10 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Video;
+namespace Tests\Torr\EmbedHelpers\Video;
 
 use PHPUnit\Framework\TestCase;
 use Torr\EmbedHelpers\Video\VideoPlatform;
 
+/**
+ * @internal
+ */
 final class VideoPlatformTest extends TestCase
 {
 	/**
